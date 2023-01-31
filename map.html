@@ -1,0 +1,186 @@
+<html>
+<head>
+  <title>Map</title>
+
+  <link rel="stylesheet" type="text/css" href="./mapcss.css" />
+
+  <script type="module" src="./mapjs.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <link rel="stylesheet" href="jquery-ui-1.13.2 backup.custom/jquery-ui.css">
+  <script src="jquery-ui-1.13.2 backup.custom/jquery-ui.js"></script>
+
+ 
+  
+  
+</head>
+<body>
+
+  <div id="customMenuContainer" class="customMenuContainer">
+    <input type="button" value="Exit" class="customMapButton" id="menuExitButton">
+    <ul class="customMenuUL">
+      <li id="buildingInfoClick">Foot Traffic in Depth Information</li>
+      <li id="restaurantClick">Restaurants</li>
+      <li id="recommenderClick">Recommendation</li>
+      <li id="compareClick">Compare Building Info</li>
+    </ul>
+
+  </div>
+
+<div class="options">
+
+
+  <input  type="button" value="Options" class="customMapButton" id="optionsMenuButton">
+  <!--<a href="#" id="menuButton" class="toggle-panel">Options</a>-->
+  <div class="customDateTime">
+    <form id="dtSelection" name="dtSelection">
+     
+      <input type="datetime-local" name="dateTime" id="dateTime" min="2020-08-20T00:00" max="2021-09-229T23:00" class="customDateTime" value="2020-10-12T13:00">
+  
+    </form>
+   
+  </div>
+</div>
+
+
+<div class="customInfoDiv" id="customInfoDiv"></div>
+
+<div class="multiActionBar">
+  <div><form action=""><input id="gradientButton" type="button" value="Color" class="customMapButton"></form></div>
+  <div><form action=""><input id="sizeButton" type="button" value="Size" class="customMapButton"></form></div>
+  <div><form action=""><input id="opacityButton" type="button" value="Opacity" class="customMapButton"></form></div>
+  <div><form action="" id="timeButtonForm" name="timeButtonForm"><input id="timeButton" type="button" value="24 Hour" class="customMapButton"></form></div>
+  
+
+
+</div>
+<div class="image">
+  <img id="colorKey" src = "legend.jpg" alt = "Map Key">
+</div>
+
+<!--Div for recommender-->
+<div class="recommendationWrapper" id="reccommendDiv">
+  
+  
+  <div class="recommender">
+    <input type="button" value="Exit" class="customMapButton" id="recommenderExitButton">
+    <h2 class="centerHeader">Recommendation</h2>
+    <form action="">
+    <div>
+      <label for="type">Looking for a place to:</label>
+      <select name="type" id="type">
+      <option value="study">Study</option>
+      <option value="advertise">Advertise</option>
+    </select>
+    </div>
+    
+    <div>
+        <label for="time1"  >Between</label>
+        <select name="time1" id="time1" class="optionDiv">
+        <option value="13">1:00PM</option>
+        <option value="14">2:00PM</option>
+        <option value="15">3:00PM</option>
+        <option value="16">4:00PM</option>
+        <option value="17">5:00PM</option>
+        <option value="18">6:00PM</option>
+        <option value="19">7:00PM</option>
+        <option value="20">8:00PM</option>
+        <option value="21">9:00PM</option>
+      </select>
+    </div>
+    <div>
+      <label for="time2">And</label>
+      <select name="time2" id="time2" class="selectOptions">
+      <option value="13">1:00PM</option>
+      <option value="14">2:00PM</option>
+      <option value="15">3:00PM</option>
+      <option value="16">4:00PM</option>
+      <option value="17">5:00PM</option>
+      <option value="18">6:00PM</option>
+      <option value="19">7:00PM</option>
+      <option value="20">8:00PM</option>
+      <option value="21">9:00PM</option>
+    </select>
+    </div>
+    <br>
+    <input type="button" value="Recommend" id="recommendatioButton" class="customMapButton">
+    </form>
+    <!--This div below will be filled with jquery-->
+    <div id="recommendationResult"></div>
+  </div>
+  
+  
+</div>
+<!--Compare div -->
+<div class="recommendationWrapper" id="compareDiv">
+  <div>
+  <div>
+    <input type="button" value="Exit" class="customMapButton" id="exitButtonCompare">
+  </div>
+  <div><p id="compareCurrentHour">Time: </p></div>
+  <div class="compareSelectDiv">
+    <div>
+      <div >
+        <label for="building1DateTimeForm">Building 1 Date</label>
+      <form id="building1DateTimeForm" name="building1DateTimeForm" >
+        <input type="date" name="building1DateTime" id="building1DateTime" min="2020-08-20" max="2021-09-22" value="2020-10-12" >
+    
+      </form>
+    </div>
+      <label for="compare1">Building 1</label>
+      
+      <select name="compare1" id="compare1" class="selectOptions">
+      
+    </select>
+
+    </div>
+    <div>
+      <div>
+        <label for="building2DateTimeForm">Building 2 Date</label>
+      <form id="building2DateTimeForm" name="building2DateTimeForm">
+        <input type="date" name="building2DateTime" id="building2DateTime" min="2020-08-20" max="2021-09-22" value="2020-10-12">
+    
+      </form>
+    </div>
+      <label for="compare2">Building 2</label>
+      <select name="compare2" id="compare2" class="selectOptions">
+      
+    </select>
+    </div>
+    
+
+  </div>
+  <div class="buildingInfoDiv">
+    <div id="building1Info">
+      <p>Current Traffic: </p>
+      <p>Busiest Time: </p>
+      <p> </p>
+      <p> </p>
+      <p>  </p>
+
+
+    </div>
+    <div id="building2Info">
+      <p>Current Traffic: </p>
+      <p>Busiest Time: </p>
+      <p> </p>
+      <p> </p>
+      <p> </p>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div id="map">
+  
+    
+<script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxCTi5Ty5oUmjVk6dHqAmvgIs5Qw-ApXg&callback=initMap&libraries=visualization&v=weekly"
+        defer
+class="mapContainer"></script>
+</div>
+
+
+
+</body>
+</html>
